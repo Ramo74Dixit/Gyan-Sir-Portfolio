@@ -24,7 +24,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+          <div className="footer-links-group">
             <a href="#about" style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>
               About
             </a>

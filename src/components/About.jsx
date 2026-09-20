@@ -138,12 +138,7 @@ export default function About() {
 
             {/* Core Domain Highlights */}
             <motion.div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-                gap: "1.2rem",
-                margin: "2rem 0",
-              }}
+              className="about-highlights-grid"
               variants={fadeUp}
               custom={4}
             >

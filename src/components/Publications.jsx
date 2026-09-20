@@ -65,8 +65,8 @@ export default function Publications() {
         </motion.div>
 
         {/* Tab Controls & Search Bar */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.2rem", marginBottom: "2.5rem" }}>
-          <div className="pub-tabs" style={{ marginBottom: 0 }}>
+        <div className="pub-controls-row">
+          <div className="pub-tabs">
             <button
               className={`pub-tab ${activeTab === "all" ? "active" : ""}`}
               onClick={() => setActiveTab("all")}
@@ -79,7 +79,7 @@ export default function Publications() {
               onClick={() => setActiveTab("papers")}
             >
               <FiFileText />
-              <span>Research Papers</span>
+              <span>Papers</span>
               <span className="pub-count">3</span>
             </button>
             <button
@@ -87,7 +87,7 @@ export default function Publications() {
               onClick={() => setActiveTab("books")}
             >
               <FiBook />
-              <span>Book Chapters</span>
+              <span>Books</span>
               <span className="pub-count">5</span>
             </button>
             <button
@@ -101,15 +101,14 @@ export default function Publications() {
           </div>
 
           {/* Search */}
-          <div style={{ position: "relative", minWidth: "260px" }}>
-            <FiSearch style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)" }} />
+          <div className="pub-search-box">
+            <FiSearch className="pub-search-icon" />
             <input
               type="text"
               placeholder="Search by topic, crop, pest..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="form-control"
-              style={{ paddingLeft: "2.6rem", paddingRight: "1rem", borderRadius: "50px", fontSize: "0.88rem" }}
+              className="form-control pub-search-input"
             />
           </div>
         </div>

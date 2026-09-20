@@ -191,17 +191,17 @@ export default function Hero() {
             {/* Contact Quick Bar */}
             <motion.div className="hero-contacts-bar" variants={itemVariants}>
               <a href={`mailto:${data.personal.email}`} className="hero-contact-item">
-                <FiMail style={{ color: "var(--emerald-light)" }} />
+                <FiMail style={{ color: "var(--emerald-light)", flexShrink: 0 }} />
                 <span>{data.personal.email}</span>
               </a>
-              <span style={{ opacity: 0.3 }}>|</span>
+              <span className="hero-contact-sep">|</span>
               <a href={`tel:${data.personal.phone}`} className="hero-contact-item">
-                <FiPhone style={{ color: "var(--gold-light)" }} />
+                <FiPhone style={{ color: "var(--gold-light)", flexShrink: 0 }} />
                 <span>{data.personal.phone}</span>
               </a>
-              <span style={{ opacity: 0.3 }}>|</span>
+              <span className="hero-contact-sep">|</span>
               <span className="hero-contact-item">
-                <FiMapPin style={{ color: "var(--cyan-agri)" }} />
+                <FiMapPin style={{ color: "var(--cyan-agri)", flexShrink: 0 }} />
                 <span>Geeta Univ, Panipat</span>
               </span>
             </motion.div>
@@ -236,7 +236,7 @@ export default function Hero() {
                     color: "var(--gold-light)",
                   }}
                 >
-                  AGS
+                  GS
                 </div>
               </div>
 
@@ -278,6 +278,13 @@ export default function Hero() {
                   <div className="chip-desc">SVPUAT Meerut</div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Mobile-only Highlight Badges */}
+            <div className="hero-mobile-badges">
+              <span className="hero-mobile-badge">🌾 ₹6 Cr Proposal</span>
+              <span className="hero-mobile-badge">💡 BPH Patent</span>
+              <span className="hero-mobile-badge">🔬 Ph.D. Entomology</span>
             </div>
           </motion.div>
         </motion.div>

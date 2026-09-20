@@ -42,7 +42,7 @@ export default function Awards() {
         </motion.div>
 
         {/* Filter Tabs */}
-        <div style={{ display: "flex", gap: "0.8rem", marginBottom: "2.5rem", flexWrap: "wrap" }}>
+        <div className="awards-filter-tabs">
           <button
             className={`pub-tab ${activeFilter === "all" ? "active" : ""}`}
             onClick={() => setActiveFilter("all")}
@@ -53,7 +53,7 @@ export default function Awards() {
             className={`pub-tab ${activeFilter === "academic" ? "active" : ""}`}
             onClick={() => setActiveFilter("academic")}
           >
-            Academic & Research Awards (2)
+            Academic Awards (2)
           </button>
           <button
             className={`pub-tab ${activeFilter === "sports" ? "active" : ""}`}
@@ -102,7 +102,7 @@ export default function Awards() {
           variants={fadeUp}
           custom={4}
         >
-          <div style={{ flex: "1 1 500px" }}>
+          <div className="fdp-info-col">
             <span className="project-pill pill-gold" style={{ marginBottom: "0.8rem", display: "inline-block" }}>
               Faculty Development Milestone
             </span>

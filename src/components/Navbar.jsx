@@ -14,6 +14,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   const navItems = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
@@ -30,7 +42,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         {/* Brand Logo */}
-        <a href="#home" className="nav-logo">
+        <a href="#home" className="nav-logo" onClick={() => setMobileOpen(false)}>
           <div className="nav-logo-badge">GS</div>
           <div className="nav-logo-text">
             <h3>Dr. A Gyan Sirohi</h3>
@@ -49,66 +61,56 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Action Button */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+        {/* Action Button & Toggle */}
+        <div className="nav-actions-group">
           <a
             href={`mailto:${data.personal.email}`}
-            className="btn-primary"
-            style={{ padding: "0.55rem 1.25rem", fontSize: "0.85rem" }}
+            className="btn-primary nav-btn-desktop"
           >
             <FiMail />
             <span>Connect</span>
           </a>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle Button */}
           <button
             className="nav-mobile-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle Navigation Menu"
           >
-            {mobileOpen ? <FiX /> : <FiMenu />}
+            {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: "70px",
-            left: 0,
-            right: 0,
-            background: "rgba(5, 19, 11, 0.98)",
-            backdropFilter: "blur(25px)",
-            borderBottom: "1px solid var(--glass-border)",
-            padding: "2rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.2rem",
-            zIndex: 999,
-          }}
-        >
-          {navItems.map((item, idx) => (
-            <a
-              key={idx}
-              href={item.href}
-              className="nav-link"
-              onClick={() => setMobileOpen(false)}
-              style={{ fontSize: "1.1rem", padding: "0.5rem 0" }}
-            >
-              {item.label}
-            </a>
-          ))}
-          <div style={{ paddingTop: "1rem", borderTop: "1px solid rgba(16, 185, 129, 0.2)" }}>
+        <div className="nav-mobile-drawer">
+          <div className="nav-mobile-links">
+            {navItems.map((item, idx) => (
+              <a
+                key={idx}
+                href={item.href}
+                className="nav-mobile-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                <span>{item.label}</span>
+                <span className="nav-mobile-arrow">→</span>
+              </a>
+            ))}
+          </div>
+          <div className="nav-mobile-footer">
             <a
               href={`mailto:${data.personal.email}`}
               className="btn-primary"
-              style={{ width: "100%", justifyContent: "center" }}
+              style={{ width: "100%", justifyContent: "center", padding: "0.85rem" }}
               onClick={() => setMobileOpen(false)}
             >
-              <FiMail /> Contact Directly
+              <FiMail />
+              <span>Contact Directly</span>
             </a>
+            <div className="nav-mobile-sub">
+              <span>📞 {data.personal.phone}</span>
+            </div>
           </div>
         </div>
       )}
