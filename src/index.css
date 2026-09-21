@@ -594,6 +594,7 @@ h1, h2, h3, h4, h5 {
 .hero-image-col {
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -729,7 +730,7 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: top center;
 }
 
 .about-info-list {
@@ -1757,7 +1758,7 @@ textarea.form-control {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
-  margin-top: 1.4rem;
+  margin-top: 0.9rem;
 }
 
 .hero-mobile-badge {
@@ -1843,8 +1844,13 @@ textarea.form-control {
   .hero-contacts-bar {
     justify-content: center;
   }
+  /* Show image ABOVE text when stacked at tablet/mobile */
+  .hero-image-col {
+    order: -1;
+    width: 100%;
+  }
   .hero-avatar-wrapper {
-    margin: 2.5rem auto 0 auto;
+    margin: 0 auto 1.5rem auto;
   }
   .about-grid {
     grid-template-columns: 1fr;
@@ -2029,17 +2035,18 @@ textarea.form-control {
 
   /* Hero Avatar Mobile */
   .hero-avatar-wrapper {
-    width: 250px;
-    height: 250px;
-    margin: 1.5rem auto 0 auto;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 0.5rem auto;
   }
 
   .hero-avatar-ring {
-    inset: -10px;
+    inset: -8px;
   }
 
+  /* Hide outer ring on small screens to prevent horizontal overflow */
   .hero-avatar-ring-2 {
-    inset: -20px;
+    display: none;
   }
 
   .floating-chip {
@@ -2048,11 +2055,13 @@ textarea.form-control {
 
   .hero-mobile-badges {
     display: flex;
+    margin-top: 0.7rem;
   }
 
   /* About Section Mobile */
   .about-bio-photo {
-    height: 220px;
+    height: auto;
+    aspect-ratio: 4 / 3;
     margin-bottom: 1.2rem;
   }
 
@@ -2347,8 +2356,8 @@ textarea.form-control {
   }
 
   .hero-avatar-wrapper {
-    width: 210px;
-    height: 210px;
+    width: 190px;
+    height: 190px;
   }
 
   .hero-avatar-ring {
@@ -2374,6 +2383,115 @@ textarea.form-control {
   .pub-tab {
     padding: 0.45rem 0.65rem;
     font-size: 0.78rem;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE ORIENTATION
+   Handles phones rotated sideways (height < 500px)
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding: 4.5rem 0 2rem 0;
+    min-height: auto;
+  }
+
+  /* Switch back to 2-column layout in landscape */
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .hero-image-col {
+    order: 0; /* Reset: image returns to right side in landscape */
+  }
+
+  .hero-avatar-wrapper {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  .hero-avatar-ring-2 {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-type-container {
+    min-height: 1.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-summary {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    line-height: 1.55;
+  }
+
+  .hero-stats-row {
+    gap: 0.4rem;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .hero-stat-card {
+    padding: 0.5rem 0.3rem;
+  }
+
+  .hero-stat-number {
+    font-size: 1.1rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.58rem;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-gold,
+  .hero-actions .btn-outline {
+    width: auto;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.82rem;
+  }
+
+  .hero-contacts-bar {
+    flex-direction: row;
+    font-size: 0.78rem;
+    gap: 0.6rem;
+  }
+
+  .hero-contact-sep {
+    display: inline;
+  }
+
+  .hero-mobile-badges {
+    display: none; /* Hide in landscape — not enough room */
+  }
+
+  /* About grid: 2 columns in landscape */
+  .about-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .about-bio-photo {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Sections: reduce top/bottom padding in landscape */
+  .section {
+    padding: 3.5rem 0;
   }
 }
 
