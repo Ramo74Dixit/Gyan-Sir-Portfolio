@@ -89,11 +89,94 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* LEFT: Profile Overview & Narrative */}
-          <div>
+          {/* ── IMAGE COLUMN (first in DOM = first on mobile) ───────────── */}
+          {/* Desktop: CSS grid-area pushes it to the RIGHT column          */}
+          <motion.div className="hero-image-col" variants={itemVariants}>
+            <div className="hero-avatar-wrapper">
+              <div className="hero-avatar-ring" />
+              <div className="hero-avatar-ring-2" />
+
+              <div className="hero-avatar-frame">
+                <img
+                  src="/profile.png"
+                  alt="Dr. A Gyan Sirohi"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.nextSibling.style.display = "flex";
+                  }}
+                />
+                <div
+                  style={{
+                    display: "none",
+                    width: "100%",
+                    height: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "linear-gradient(135deg, #0d3b2e, #155e3d)",
+                    fontFamily: "var(--font-display)",
+                    fontSize: "3.5rem",
+                    fontWeight: "700",
+                    color: "var(--gold-light)",
+                  }}
+                >
+                  GS
+                </div>
+              </div>
+
+              {/* Floating Badge 1: ₹6 Cr Proposal */}
+              <motion.div
+                className="floating-chip chip-1"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="chip-icon">🌾</span>
+                <div>
+                  <div className="chip-val">₹6 Crore</div>
+                  <div className="chip-desc">DBT-BIRAC PI Proposal</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Badge 2: Patent */}
+              <motion.div
+                className="floating-chip chip-2"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              >
+                <span className="chip-icon">💡</span>
+                <div>
+                  <div className="chip-val">Patent: P1</div>
+                  <div className="chip-desc">Auto BPH Monitor Device</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Badge 3: Ph.D. Entomology */}
+              <motion.div
+                className="floating-chip chip-3"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+              >
+                <span className="chip-icon">🔬</span>
+                <div>
+                  <div className="chip-val">Ph.D. Entomology</div>
+                  <div className="chip-desc">SVPUAT Meerut</div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Mobile-only Highlight Badges — shown below avatar on mobile */}
+            <div className="hero-mobile-badges">
+              <span className="hero-mobile-badge">🌾 ₹6 Cr Proposal</span>
+              <span className="hero-mobile-badge">💡 BPH Patent</span>
+              <span className="hero-mobile-badge">🔬 Ph.D. Entomology</span>
+            </div>
+          </motion.div>
+
+          {/* ── TEXT COLUMN (second in DOM = second on mobile) ───────────── */}
+          {/* Desktop: CSS grid-area pushes it to the LEFT column            */}
+          <div className="hero-text-col">
             <motion.div className="hero-tag" variants={itemVariants}>
               <span className="hero-tag-dot" />
-              <span>Available for Faculty, Research & Agri-AI Collaborations</span>
+              <span>Available for Faculty, Research &amp; Agri-AI Collaborations</span>
             </motion.div>
 
             <motion.h1 className="hero-title" variants={itemVariants}>
@@ -180,7 +263,7 @@ export default function Hero() {
               </a>
               <a href="#publications" className="btn-gold">
                 <FiFileText />
-                <span>Publications & Patent</span>
+                <span>Publications &amp; Patent</span>
               </a>
               <a href="#contact" className="btn-outline">
                 <FiMail />
@@ -206,87 +289,6 @@ export default function Hero() {
               </span>
             </motion.div>
           </div>
-
-          {/* RIGHT: Avatar with Floating Academic Badges */}
-          <motion.div className="hero-image-col" variants={itemVariants}>
-            <div className="hero-avatar-wrapper">
-              <div className="hero-avatar-ring" />
-              <div className="hero-avatar-ring-2" />
-
-              <div className="hero-avatar-frame">
-                <img
-                  src="/profile.png"
-                  alt="Dr. A Gyan Sirohi"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "flex";
-                  }}
-                />
-                <div
-                  style={{
-                    display: "none",
-                    width: "100%",
-                    height: "100%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "linear-gradient(135deg, #0d3b2e, #155e3d)",
-                    fontFamily: "var(--font-display)",
-                    fontSize: "3.5rem",
-                    fontWeight: "700",
-                    color: "var(--gold-light)",
-                  }}
-                >
-                  GS
-                </div>
-              </div>
-
-              {/* Floating Badge 1: ₹6 Cr Proposal */}
-              <motion.div
-                className="floating-chip chip-1"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="chip-icon">🌾</span>
-                <div>
-                  <div className="chip-val">₹6 Crore</div>
-                  <div className="chip-desc">DBT-BIRAC PI Proposal</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2: Patent */}
-              <motion.div
-                className="floating-chip chip-2"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              >
-                <span className="chip-icon">💡</span>
-                <div>
-                  <div className="chip-val">Patent: P1</div>
-                  <div className="chip-desc">Auto BPH Monitor Device</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 3: Ph.D. Entomology */}
-              <motion.div
-                className="floating-chip chip-3"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-              >
-                <span className="chip-icon">🔬</span>
-                <div>
-                  <div className="chip-val">Ph.D. Entomology</div>
-                  <div className="chip-desc">SVPUAT Meerut</div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Mobile-only Highlight Badges */}
-            <div className="hero-mobile-badges">
-              <span className="hero-mobile-badge">🌾 ₹6 Cr Proposal</span>
-              <span className="hero-mobile-badge">💡 BPH Patent</span>
-              <span className="hero-mobile-badge">🔬 Ph.D. Entomology</span>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
